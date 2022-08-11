@@ -25,7 +25,10 @@ export default class DropdownItem extends PureComponent {
     }
 
     onPress() {
-        let {onPress, index} = this.props;
+        let {onPress, index, disabled} = this.props;
+        if (disabled) {
+            return
+        }
 
         if ('function' === typeof onPress) {
             onPress(index);
@@ -38,6 +41,7 @@ export default class DropdownItem extends PureComponent {
         return (
             <Button
                 {...props}
+                disabled={false}
 
                 style={[styles.container, style]}
                 onPress={this.onPress}
